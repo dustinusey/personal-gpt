@@ -32,8 +32,6 @@ const App = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
-        setUser(result);
-        // const user = result.user;
         isSignedIn(true);
       })
       .catch((error) => {
@@ -45,7 +43,7 @@ const App = () => {
     signOut(auth)
       .then(() => {
         isSignedIn(false);
-        alert("You have signed out successfully");
+        // alert("You have signed out successfully");
       })
       .catch((err) => {
         console.error(err);
@@ -53,7 +51,7 @@ const App = () => {
   };
 
   onAuthStateChanged(auth, (user) => {
-    user ? setUser(user) : "";
+    user && setUser(user);
   });
 
   return (
