@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import { AppState } from "../App";
 import SendChat from "./SendChat";
 import UserChat from "./UserChat";
 
 const Chats = () => {
+  const { userChats } = useContext(AppState);
   return (
     <div className="bg-gray-900 p-5 w-full">
       <div className="flex flex-col justify-between h-[calc(100vh-140px)]">
@@ -10,7 +13,9 @@ const Chats = () => {
             You&apos;re now chatting with your personal AI Assistant
           </p>
           <div className="my-2">
-            <UserChat />
+            {userChats.map((chat, index) => {
+              <UserChat key={index} message={chat.message} />;
+            })}
           </div>
         </div>
         <SendChat />

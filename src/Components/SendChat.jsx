@@ -1,6 +1,23 @@
+import { useContext, useState } from "react";
+import { AppState } from "../App";
+
 const SendChat = () => {
+  const { userChats, addUserChats } = useContext(AppState);
+  const [chatValue, setChatValue] = useState("");
+
+  function handleSendChat(e) {
+    e.preventDefault();
+    addUserChats([...userChats, { message: chatValue }]);
+    setChatValue("");
+  }
+
   return (
-    <form className="mt-auto">
+    <form
+      onSubmit={(e) => {
+        handleSendChat(e);
+      }}
+      className="mt-auto"
+    >
       <label
         htmlFor="search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -9,6 +26,10 @@ const SendChat = () => {
       </label>
       <div className="relative">
         <input
+          onKeyDown={(e) => {
+            setChatValue(e.target.value);
+          }}
+          value={chatValue}
           type="text"
           className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 outline-none"
           placeholder="What can I help you with?"

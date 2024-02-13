@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AppState } from "../App";
 
-const UserChat = () => {
+const UserChat = (props) => {
   const { signedIn, user } = useContext(AppState);
   return (
     <div className="flex">
@@ -22,7 +22,7 @@ const UserChat = () => {
             )}
           </div>
           <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
-            user chat
+            {props.message}
           </p>
         </div>
       </div>

@@ -27,6 +27,7 @@ const auth = getAuth();
 const App = () => {
   const [user, setUser] = useState("");
   const [signedIn, isSignedIn] = useState("false");
+  const [userChats, addUserChats] = useState([]);
 
   const userSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -43,7 +44,6 @@ const App = () => {
     signOut(auth)
       .then(() => {
         isSignedIn(false);
-        // alert("You have signed out successfully");
       })
       .catch((err) => {
         console.error(err);
@@ -55,7 +55,16 @@ const App = () => {
   });
 
   return (
-    <AppState.Provider value={{ user, userSignIn, signedIn, userSignOut }}>
+    <AppState.Provider
+      value={{
+        userChats,
+        addUserChats,
+        user,
+        userSignIn,
+        signedIn,
+        userSignOut,
+      }}
+    >
       <div className="h-screen bg-gray-800 overflow-hidden">
         <Navbar />
         <ChatContainer />
