@@ -7,7 +7,7 @@ const ChatContainer = () => {
   const { signedIn } = useContext(AppState);
 
   return (
-    <div className="text-gray-200  m-auto mt-[68px] h-[calc(100vh-68px)] flex px-5 py-3">
+    <div className="text-gray-200 mt-[60px] h-[calc(100vh-45px)] flex px-0 py-3">
       {/* {signedIn && <ChatHistory />} */}
       <Chats />
     </div>
