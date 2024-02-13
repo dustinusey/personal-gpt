@@ -51,7 +51,7 @@ const App = () => {
   };
 
   onAuthStateChanged(auth, (user) => {
-    user && setUser(user);
+    user ? (setUser(user), isSignedIn(true)) : isSignedIn(false);
   });
 
   return (
