@@ -62,7 +62,7 @@ const Navbar = () => {
                 </svg>
                 {/* dropdown */}
                 {toggleDropdown && (
-                  <ul className="p-2 rounded-md bg-slate-800 absolute top-[150%] right-0 w-[146px]">
+                  <ul className="text-sm p-2 rounded-md bg-slate-800 absolute top-[150%] right-0 w-[146px]">
                     <li className="border-b p-3 border-slate-700">
                       {user.displayName}
                     </li>

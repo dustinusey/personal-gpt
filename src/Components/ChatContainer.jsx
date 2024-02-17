@@ -8,7 +8,7 @@ const ChatContainer = () => {
 
   return (
     <div className="text-gray-200 mt-[60px] h-[calc(100vh-45px)] flex px-0 py-3">
-      {/* {signedIn && <ChatHistory />} */}
+      {signedIn && <ChatHistory />}
       <Chats />
     </div>
   );
