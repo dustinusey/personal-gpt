@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 
 const SendChat = (props) => {
@@ -6,43 +5,13 @@ const SendChat = (props) => {
 
   function handleSendChat(e) {
     e.preventDefault();
-    props.setUserChats([...props.userChats, { message: chatValue }]);
-    setChatValue("");
-
-    props.isThinking(true);
-
-    async function pingChatGPT(prompt) {
-      console.log(import.meta.env.VITE_OPENAI_KEY);
-      const data = await axios.post(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          max_tokens: 1000,
-          model: "gpt-3.5-turbo-1106",
-          messages: [
-            {
-              role: "system",
-              content: `You are a helpful assistant`,
-            },
-            {
-              role: "user",
-              content: prompt,
-            },
-          ],
-        },
-        { headers: { Authorization: import.meta.env.VITE_OPENAI_KEY } }
-      );
-      props.isThinking(false);
-      const response = await data.data.choices[0].message.content;
-      props.setAssistantChats([...props.assistantChats, { message: response }]);
-    }
-
-    pingChatGPT(chatValue);
   }
 
   return (
     <form
       onSubmit={(e) => {
         handleSendChat(e);
+        props.handleChatRequest(chatValue);
       }}
       className="mt-auto"
     >
